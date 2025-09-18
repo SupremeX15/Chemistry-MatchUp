@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chemistry Match-Up — Professional</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Extra small animation helpers outside Tailwind for convenience */
+    .card-flip { transform-style: preserve-3d; transition: transform 400ms; }
+    .flipped { transform: rotateY(180deg); }
+    .card-face { backface-visibility: hidden; position: absolute; inset: 0; display:flex;align-items:center;justify-content:center; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-100 flex items-center justify-center p-6">
+  <div class="w-full max-w-5xl">
+
+    <!-- Header / HUD -->
+    <header class="mb-4 sm:mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold flex items-center gap-2 sm:gap-3">
+          <span class="text-2xl sm:text-3xl">⚗️</span>
+          <span class="leading-tight">Chemistry Match-Up</span>
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4">
+          <div id="scoreBox" class="bg-slate-700 px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg font-semibold">
+            Score: <span id="score">0</span>
+          </div>
+          <div id="timerBox" class="bg-slate-700 px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg font-semibold">
+            ⏱️ <span id="timer">60</span>s
+          </div>
+          <div id="livesBox" class="bg-slate-700 px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg text-sm sm:text-base md:text-lg font-semibold">
+            Lives: <span id="lives">❤️❤️❤️</span>
+          </div>
+          <button id="restartBtn" class="bg-indigo-600 hover:bg-indigo-500 px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-medium">
+            Restart
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Game area -->
+    <main>
+      <section id="controls" class="mb-4 flex items-center gap-3">
+        <button id="hintBtn" class="bg-yellow-500 hover:bg-yellow-400 text-slate-900 px-3 py-2 rounded-md">Hint (3)</button>
+        <label class="inline-flex items-center gap-2 text-sm bg-slate-700 px-3 py-2 rounded-md">
+          <input id="soundToggle" type="checkbox" checked /> <span>Sound</span>
+        </label>
+      </section>
+
+     <section id="board" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6"></section>
+
+
+      <div id="factBox" class="mt-6 p-4 bg-slate-800 rounded-xl shadow-lg hidden">
+        <div id="factContent" class="text-center"></div>
+      </div>
+    </main>
+
+    <!-- End overlay -->
+    <div id="endOverlay" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-40">
+      <div class="bg-slate-900 rounded-2xl p-8 text-center w-11/12 max-w-md">
+        <h2 id="endTitle" class="text-3xl font-bold mb-3"></h2>
+        <p id="endMessage" class="mb-6"></p>
+        <div class="flex justify-center gap-3">
+          <button id="playAgain" class="bg-emerald-500 px-4 py-2 rounded-md">Play Again</button>
+          <button id="closeOverlay" class="bg-slate-700 px-4 py-2 rounded-md">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+<script src="script.js"></script>
+  
+</body>
+</html>
